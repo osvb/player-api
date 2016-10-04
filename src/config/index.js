@@ -12,6 +12,8 @@ const config = {
     port: process.env.PORT || 9000,
     pgUrl: process.env.PG_URL || 'postgres://localhost/postgres',
     nodeEnv: process.env.NODE_ENV || 'development',
-    sentry: process.env.SENTRY_DSN || ''
+    sentry: process.env.SENTRY_DSN || '',
+    user: process.env.BASIC_AUTH_USER || 'admin',
+    password: process.env.BASIC_AUTH_PASSWORD || 'admin'
 };
 export default config;

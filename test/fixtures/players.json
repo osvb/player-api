@@ -1,0 +1,29 @@
+[
+	{
+		"model": "Player",
+		"data": {
+			"firstName": "FirstName 1",
+	    "lastName": "Lastname 1",
+	    "email": "firstname.lastname@1.com",
+	    "phoneNumber": "12345671"
+		}
+	},
+    {
+        "model": "Player",
+        "data": {
+			    "firstName": "Firstname 2",
+			    "lastName": "Lastname 2",
+			    "email": "firstname.lastname@2.com",
+			    "phoneNumber": "12345672"
+        }
+    },
+    {
+        "model": "Player",
+        "data": {
+					"firstName": "FirstName 3",
+					"lastName": "Lastname 3",
+					"email": "firstname.lastname@3.com",
+					"phoneNumber": "12345673"
+        }
+    }
+]

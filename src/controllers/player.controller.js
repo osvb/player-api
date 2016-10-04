@@ -1,10 +1,10 @@
 import CRUD from './CRUD';
 import db from '../models';
 
-class ExampleController extends CRUD {
+class PlayerController extends CRUD {
     constructor() {
-        super(db.Player, 'example');
+        super(db.Player, 'player');
     }
 }
 
-export default ExampleController;
+export default PlayerController;

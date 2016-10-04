@@ -13,6 +13,7 @@ class CRUD {
 
         // Bind this to methods
         this.list = this.list.bind(this);
+        this.search = this.search.bind(this)
         this.retrieve = this.retrieve.bind(this);
         this.destroy = this.destroy.bind(this);
         this.update = this.update.bind(this);
@@ -30,6 +31,22 @@ class CRUD {
      */
     list(req, res, next) {
         this.Model.findAll()
+        .then(res.json.bind(res))
+        .catch(next);
+    }
+
+    /**
+     * search - search all objects in the database
+     *
+     * @function search
+     * @memberof  module:controllers/CRUD
+     * @param  {Object} req  Express request object
+     * @param  {Object} res  Express response object
+     * @param  {Function} next Express next middleware function
+     */
+    search(req, res, next) {
+      
+      this.Model.findAll()
         .then(res.json.bind(res))
         .catch(next);
     }

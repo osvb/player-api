@@ -1,7 +1,7 @@
 {
-  "name": "express-api-boilerplate",
+  "name": "player-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "a rest api with an /players endpoint to do CRUD operations against",
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint --ignore-path .gitignore .",
@@ -25,17 +25,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/essoen/express-api-boilerplate.git"
+    "url": "git+https://github.com/osvb/player-api.git"
   },
-  "author": "Stein-Otto Svorstøl <steinotto@svorstol.com>",
+  "author": "Sindre Svendby",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/essoen/express-api-boilerplate.git/issues"
+    "url": "https://github.com/osvb/player-api/issues"
   },
-  "homepage": "https://github.com/essoen/express-api-boilerplate.git#readme",
+  "homepage": "https://github.com/osvb/player-api/",
   "dependencies": {
     "ava": "^0.15.2",
     "ava-spec": "^1.0.1",
+    "basic-auth": "^1.0.4",
     "bluebird": "^3.4.0",
     "body-parser": "^1.15.1",
     "composable-middleware": "^0.3.0",
@@ -57,7 +58,8 @@
     "sinon": "^1.17.4",
     "supertest": "^2.0.0",
     "supertest-as-promised": "^3.1.0",
-    "umzug": "^1.11.0"
+    "umzug": "^1.11.0",
+    "url": "^0.11.0"
   },
   "devDependencies": {
     "babel-cli": "^6.10.1",
@@ -73,8 +75,6 @@
     "eslint-config-airbnb-base": "^5.0.1",
     "eslint-plugin-async-await": "0.0.0",
     "eslint-plugin-import": "^1.8.1",
-    "jsdoc": "^3.4.0",
-    "jsdoc-babel": "^0.2.0",
     "nyc": "^7.1.0"
   }
 }

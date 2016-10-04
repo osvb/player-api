@@ -1,17 +1,17 @@
 /**
-* Example model
-* @module models/example
+* Player model
+* @module models/player
 */
 
 /**
-* Example model - create and export the database model for the example
+* Player model - create and export the database model for the player
 * including all assosiations and classmethods assiciated with this model.
-* @memberof  module:models/Example
+* @memberof  module:models/Player
 * @param  {Object} sequelize description
 * @param  {Object} DataTypes description
 */
 export default function (sequelize, DataTypes) {
-    const Example = sequelize.define('player', {
+    const Player = sequelize.define('player', {
         firstName: {
             type: DataTypes.STRING,
             unique: false,
@@ -46,5 +46,5 @@ export default function (sequelize, DataTypes) {
     //    }
     // }
     );
-    return Example;
+    return Player;
 }
