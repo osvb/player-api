@@ -5,7 +5,8 @@
 			"firstName": "FirstName 1",
 	    "lastName": "Lastname 1",
 	    "email": "firstname.lastname@1.com",
-	    "phoneNumber": "12345671"
+	    "phoneNumber": "12345671",
+			"externalId": 1
 		}
 	},
     {
@@ -14,7 +15,8 @@
 			    "firstName": "FirstName 2",
 			    "lastName": "Lastname 2",
 			    "email": "firstname.lastname@2.com",
-			    "phoneNumber": "12345672"
+			    "phoneNumber": "12345672",
+					"externalId": 2
         }
     },
     {
@@ -23,7 +25,26 @@
 					"firstName": "FirstName 3",
 					"lastName": "Lastname 3",
 					"email": "firstname.lastname@3.com",
-					"phoneNumber": "12345673"
+					"phoneNumber": "12345673",
+					"externalId": 3
+        }
+    },
+		{
+        "model": "Player",
+        "data": {
+					"firstName": "FirstName 4",
+					"lastName": "Lastname 4",
+					"email": "firstname.lastname@4.com",
+					"phoneNumber": "12345674",
+        }
+    },
+		{
+        "model": "Player",
+        "data": {
+					"firstName": "FirstName 5",
+					"lastName": "Lastname 5",
+					"email": "firstname.lastname@5.com",
+					"phoneNumber": "12345675",
         }
     }
 ]

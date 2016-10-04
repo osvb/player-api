@@ -37,6 +37,11 @@ export default function (sequelize, DataTypes) {
             unique: false,
             defaultValue: 0,
             allowNull: false
+        },
+        externalId: {
+            type: DataTypes.INTEGER,
+            unique: true,
+            allowNull: true
         }
     } // , { // For reference:
     //    classMethods: {
