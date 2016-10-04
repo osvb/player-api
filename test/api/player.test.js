@@ -33,7 +33,7 @@ describe.serial('Player API', it => {
             .get(`${URI}/search?firstName=FirstName 1`)
             .expect(200)
             .then(res => res.body);
-        t.is(response.length, dbObjects.length);
+        t.is(response.length, 1);
     });
 
     it('should return a single player', async t => {

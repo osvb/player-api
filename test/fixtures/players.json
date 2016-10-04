@@ -11,7 +11,7 @@
     {
         "model": "Player",
         "data": {
-			    "firstName": "Firstname 2",
+			    "firstName": "FirstName 2",
 			    "lastName": "Lastname 2",
 			    "email": "firstname.lastname@2.com",
 			    "phoneNumber": "12345672"

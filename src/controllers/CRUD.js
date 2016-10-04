@@ -4,6 +4,7 @@
  */
 import Sequelize from 'sequelize';
 import * as errors from '../components/errors';
+import url from 'url'
 
 class CRUD {
 
@@ -45,10 +46,19 @@ class CRUD {
      * @param  {Function} next Express next middleware function
      */
     search(req, res, next) {
-      
-      this.Model.findAll()
-        .then(res.json.bind(res))
-        .catch(next);
+      const { query } = url.parse(req.url, true);
+
+      const whereClause = Object.keys(query).reduce((initalValue, key) => {
+        return Object.assign(initalValue, {
+          [key]: {
+            $iLike : `%${query[key]}%`
+          }
+        })
+      }, {});
+
+      this.Model.findAll({ where: whereClause })
+      .then(res.json.bind(res))
+      .catch(next);
     }
 
     /**
