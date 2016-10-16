@@ -61,6 +61,9 @@ Expect a body with some of the fields from the player object, and the `Content-T
 * `DELETE /players/:id`
 delete the resource
 
+* `GET /players/search/?field=value`
+Search for players.
+
 ## Development
 ### Database
 To setup the project locally install Postgres and set `PG_URL ` to your database. The format should `postgres://USERNAME:PASSWORD@localhost/DB`. The capitalized words should be replaced with your own values.

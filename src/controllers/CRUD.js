@@ -46,19 +46,41 @@ class CRUD {
      * @param  {Function} next Express next middleware function
      */
     search(req, res, next) {
-      const { query } = url.parse(req.url, true);
 
-      const whereClause = Object.keys(query).reduce((initalValue, key) => {
-        return Object.assign(initalValue, {
-          [key]: {
-            $iLike : `%${query[key]}%`
+      const createSql = (describeData) => {
+        const { query } = url.parse(req.url, true);
+        const validFields = Object.keys(describeData);
+        const unknownFields = Object.keys(query).filter(name => !validFields.includes(name))
+        if(unknownFields.length > 0) {
+          return res.status(400).json({error:`Unkown field(s): ${unknownFields}`, validFields: validFields});
+        }
+
+
+
+        const whereClause = Object.keys(query).reduce((initalValue, key) => {
+          let where;
+          if(describeData[key].type == "INTEGER") {
+            where = { [key]: query[key] }
+          } else {
+            // assume text field
+            where = {
+              [key]: {
+                $iLike : `%${query[key]}%`
+              }
+            }
           }
-        })
-      }, {});
+          return Object.assign(initalValue, where)
+        }, {});
 
-      this.Model.findAll({ where: whereClause })
-      .then(res.json.bind(res))
-      .catch(next);
+        this.Model.findAll({ where: whereClause })
+        .then(res.json.bind(res))
+        .catch(next);
+      }
+
+      this.Model.describe()
+       .then(createSql)
+       .catch(next);
+
     }
 
     /**
@@ -158,3 +180,19 @@ class CRUD {
 }
 
 export default CRUD;
+
+function censor(censor) {
+  var i = 0;
+
+  return function(key, value) {
+    if(i !== 0 && typeof(censor) === 'object' && typeof(value) == 'object' && censor == value)
+      return '[Circular]';
+
+    if(i >= 29) // seems to be a harded maximum of 30 serialized objects?
+      return '[Unknown]';
+
+    ++i; // so we know we aren't using the original object anymore
+
+    return value;
+  }
+}
