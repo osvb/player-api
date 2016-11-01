@@ -1,5 +1,9 @@
 # Player API
 
+Du vil sikkert ikke sette opp dette lokalt, men heller gå til
+spiller.test.api.osvb.no for å ha et api og test mot når du utvikler andre biter.
+
+Under følger en forklaring på hvordan du skal sette dette opp, men er litt mer avansert enn de andre forklaringene. 
 
 ## Usage (Clients)
 
