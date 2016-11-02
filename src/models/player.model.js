@@ -22,6 +22,11 @@ export default function (sequelize, DataTypes) {
             unique: false,
             allowNull: false
         },
+        name: {
+          type: DataTypes.STRING,
+          unique: false,
+          allowNull: false
+        },
         gender: {
             type: DataTypes.STRING,
             unique: false,

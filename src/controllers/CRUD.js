@@ -5,6 +5,7 @@
 import Sequelize from 'sequelize';
 import * as errors from '../components/errors';
 import url from 'url'
+import lodash from 'lodash'
 
 class CRUD {
 
@@ -50,29 +51,28 @@ class CRUD {
       const createSql = (describeData) => {
         const { query } = url.parse(req.url, true);
         const validFields = Object.keys(describeData);
-        const unknownFields = Object.keys(query).filter(name => !validFields.includes(name))
+        const queryKeys = Object.keys(query)
+        const allFields = lodash.flatMap(queryKeys, key => key.split('|'))
+        const unknownFields = allFields.filter(name => !validFields.includes(name))
         if(unknownFields.length > 0) {
           return res.status(400).json({error:`Unkown field(s): ${unknownFields}`, validFields: validFields});
         }
 
+        const andKeys = queryKeys.filter(key => !key.includes('|'))
+        const orKeys = queryKeys.filter(key => key.includes('|'))
 
-
-        const whereClause = Object.keys(query).reduce((initalValue, key) => {
-          let where;
-          if(describeData[key].type == "INTEGER") {
-            where = { [key]: query[key] }
-          } else {
-            // assume text field
-            where = {
-              [key]: {
-                $iLike : `%${query[key]}%`
-              }
-            }
-          }
-          return Object.assign(initalValue, where)
+        const andClauses = andKeys.reduce((initalValue, key) => {
+          return Object.assign(initalValue, createFieldStatement(describeData, query, key))
         }, {});
 
-        this.Model.findAll({ where: whereClause })
+        const orClauses = orKeys.reduce((initalValue, key) => {
+          return Object.assign(initalValue, createOr(describeData, query, key))
+        }, {});
+
+        const whereClause =  { where: Object.assign({}, andClauses, orClauses), limit: 10 }
+        console.log(whereClause);
+
+        this.Model.findAll(whereClause)
         .then(res.json.bind(res))
         .catch(next);
       }
@@ -194,5 +194,26 @@ function censor(censor) {
     ++i; // so we know we aren't using the original object anymore
 
     return value;
+  }
+}
+
+function createOr(describeData, query, key) {
+  const orKeys = key.split('|');
+  const orQuery = orKeys.map(key => createFieldStatement(describeData, query, key))
+  return { $or: orQuery }
+}
+
+
+function createFieldStatement(describeData, query, key) {
+  console.log('key', key);
+  if(describeData[key].type == "INTEGER") {
+    return { [key]: query[key] }
+  } else {
+    // assume text field
+    return {
+      [key]: {
+        $iLike : `%${query[key]}%`
+      }
+    }
   }
 }
