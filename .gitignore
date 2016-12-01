@@ -17,3 +17,5 @@ nohup.out
 stop.sh
 pid.log
 doc
+prod.sh
+dev.sh
