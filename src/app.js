@@ -11,7 +11,7 @@ import bodyParser from 'body-parser';
 import raven from 'raven';
 import methodOverride from 'method-override';
 import cookieParser from 'cookie-parser';
-
+import cors from 'cors';
 import config from './config';
 import routes from './routes';
 import { sentryClient } from './components/errors';
@@ -25,6 +25,7 @@ if (config.env === 'production' || config.env === 'staging') {
     });
 }
 
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(methodOverride());
