@@ -50,7 +50,7 @@ class CRUD {
 
       const createSql = (describeData) => {
         const { query } = url.parse(req.url, true);
-        const validFields = Object.keys(describeData);
+        const validFields = Object.keys(describeData) || [];
         const queryKeys = Object.keys(query)
         const allFields = lodash.flatMap(queryKeys, key => key.split('|'))
         const unknownFields = allFields.filter(name => !validFields.includes(name))
