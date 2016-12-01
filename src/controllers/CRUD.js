@@ -7,6 +7,10 @@ import * as errors from '../components/errors';
 import url from 'url'
 import lodash from 'lodash'
 
+import debug form 'debugæ
+
+const log = debug('controllers:CRUD');
+
 class CRUD {
 
     constructor(model, resourceName) {
@@ -50,9 +54,10 @@ class CRUD {
 
       const createSql = (describeData) => {
         const { query } = url.parse(req.url, true);
-        const validFields = Object.keys(describeData) || [];
+        const validFields = Object.keys(describeData) ;
         const queryKeys = Object.keys(query)
         const allFields = lodash.flatMap(queryKeys, key => key.split('|'))
+        log(validFields);
         const unknownFields = allFields.filter(name => !validFields.includes(name))
         if(unknownFields.length > 0) {
           return res.status(400).json({error:`Unkown field(s): ${unknownFields}`, validFields: validFields});
@@ -70,7 +75,6 @@ class CRUD {
         }, {});
 
         const whereClause =  { where: Object.assign({}, andClauses, orClauses), limit: 10 }
-        console.log(whereClause);
 
         this.Model.findAll(whereClause)
         .then(res.json.bind(res))
