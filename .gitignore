@@ -10,6 +10,10 @@ out
 *.swo
 .environment
 dist
+start.sh
 coverage
 .nyc_output
+nohup.out
+stop.sh
+pid.log
 doc
