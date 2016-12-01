@@ -7,7 +7,7 @@ import * as errors from '../components/errors';
 import url from 'url'
 import lodash from 'lodash'
 
-import debug form 'debugæ
+import debug form 'debug'
 
 const log = debug('controllers:CRUD');
 
