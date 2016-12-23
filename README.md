@@ -1,72 +1,14 @@
-# Player API
+# Beachvolleyball REST API
 
-Du vil sikkert ikke sette opp dette lokalt, men heller gå til
-spiller.test.api.osvb.no for å ha et api og test mot når du utvikler andre biter.
-
-Under følger en forklaring på hvordan du skal sette dette opp, men er litt mer avansert enn de andre forklaringene. 
 
 ## Usage (Clients)
 
-### Player object
-```js
-{
-  firstName:
-      type: DataTypes.STRING,
-      unique: false,
-      allowNull: false
-  },
-  lastName: {
-      type: DataTypes.STRING,
-      unique: false,
-      allowNull: false
-  },
-  email: {
-      type: DataTypes.STRING,
-      unique: true,
-      allowNull: false
-  },
-  phoneNumber: {
-      type: DataTypes.STRING,
-      unique: true,
-      allowNull: false
-  },
-  rankingPoints: {
-      type: DataTypes.STRING,
-      unique: false,
-      defaultValue: 0,
-      allowNull: false
-  }
-}
-```
-E.g:
-```json
-{
-	"firstName": "John",
-	"lastName": "Doe",
-	"email": "no-mail@example.com",
-	"phoneNumber": "12345678"
-}
-```
+
 
 ### Endpoints
+* [Players!](./players.md)
+* [Tournaments!](./tournments.md)
 
-* `GET /players`
- Returns a list of player object
-
-* `GET /players/:id`
-Returns one player object with the error.
-
-* `POST /players/`
-Expect a body with an player object, and the `Content-Type` header field set to `application:json`
-
-* `PUT /players/:id`
-Expect a body with some of the fields from the player object, and the `Content-Type` header field set to `application:json`
-
-* `DELETE /players/:id`
-delete the resource
-
-* `GET /players/search/?field=value`
-Search for players.
 
 ## Development
 ### Database

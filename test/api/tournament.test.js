@@ -4,23 +4,23 @@ import { getAllElements, loadFixtures } from '../helpers';
 import app from '../../src/app';
 
 const fixtures = [
-    'players',
+    'tournaments'
 ];
 
-const URI = '/players';
+const URI = '/tournaments';
 
 let dbObjects;
 
-describe.serial('Player API', it => {
+describe.serial('Tournament API', it => {
     it.beforeEach(() =>
         loadFixtures(fixtures)
-            .then(() => getAllElements('Player'))
+            .then(() => getAllElements('Tournament'))
             .then(response => {
                 dbObjects = response;
             })
     );
 
-    it('should reitrieve a list of all players', async t => {
+    it('should reitrieve a list of all tournaments', async t => {
         const response = await request(app)
             .get(URI)
             .expect(200)
@@ -28,15 +28,16 @@ describe.serial('Player API', it => {
         t.is(response.length, dbObjects.length);
     });
 
-    it('should reitrieve a list of one players', async t => {
+    it('should reitrieve a list of one tournaments', async t => {
         const response = await request(app)
-            .get(`${URI}/search?firstName=FirstName 1`)
+            .get(`${URI}/search?name=Test1 Tournament`)
             .expect(200)
             .then(res => res.body);
         t.is(response.length, 1);
+				t.is(response[0].name, "Test1 Tournament");
     });
 
-    it('should return a single player', async t => {
+    it('should return a single tournament', async t => {
         const fixture = dbObjects[0];
         const response = await request(app)
             .get(`${URI}/${fixture.id}`)
@@ -44,47 +45,48 @@ describe.serial('Player API', it => {
         t.is(response.body.name, fixture.name);
     });
 
-    it('should return ResourceNotFound when retrieving nonexisting player', async t => {
+    it('should return ResourceNotFound when retrieving nonexisting tournament', async t => {
         const fixture = dbObjects[0];
         const response = await request(app)
             .get(`${URI}/${fixture.id + 10000}`)
             .expect(404);
         t.is(response.body.name, 'ResourceNotFoundError');
-        t.is(response.body.message, 'Could not find resource of type player');
+        t.is(response.body.message, 'Could not find resource of type tournament');
     });
 
-    it('should add a new player', async t => {
-        const player = {
-			    "firstName": "Firstname 99",
-			    "lastName": "Lastname 99",
-					"name": "Firstname 99 Lastname 99",
-					"gender": "male",
-					"externalId": 99,
-			    "email": "firstname.lastname@99.com",
-			    "phoneNumber": "99999999"
-        }
+    it('should add a new tournament', async t => {
+        const tournament = {
+					"name": "Test5 Tournament",
+					"startdate": "2017-11-09T23:00:00.000Z",
+					"openreg": "2016-05-03T13:02:01.000Z",
+					"place": 98989898,
+					"teamlimit": 99,
+					"gender": "damer",
+					"price": 500,
+					"info": "Added from tournament.test.js"
+				}
         const response = await request(app)
             .post(URI)
             .auth('admin', 'admin')
-            .send(player)
-						.expect(201);
+            .send(tournament)
+            .expect(201);
 
-        t.is(response.body.firstName, player.firstName);
+        t.is(response.body.name, tournament.name);
     });
 
-    it('should be able to update an player', async () => {
-        const player = dbObjects[0];
+    it('should be able to update an tournament', async () => {
+        const tournament = dbObjects[0];
         await request(app)
-            .put(`${URI}/${player.id}`)
+            .put(`${URI}/${tournament.id}`)
             .auth('admin', 'admin')
             .send({ name: 'changed' })
             .expect(204);
     });
 
-    it('should be able to delete an player', async () => {
-        const player = dbObjects[0];
+    it('should be able to delete an tournament', async () => {
+        const tournament = dbObjects[0];
         await request(app)
-            .delete(`${URI}/${player.id}`)
+            .delete(`${URI}/${tournament.id}`)
             .auth('admin', 'admin')
             .expect(204);
     });

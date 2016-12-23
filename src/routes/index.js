@@ -1,13 +1,18 @@
 import express from 'express';
 import raven from 'raven';
-import example from './example.routes';
 import player from './player.routes';
+import tournament from './tournament.routes';
 import { pageNotFoundMiddleware, sentryClient, errorMiddleware } from '../components/errors';
 
 const router = express.Router();
 
-router.use('/examples', example);
 router.use('/players', player);
+router.use('/tournaments', tournament);
+router.use('/', (req, res) => {
+	res.send(
+		'<ul><li><a href="/players">players</a></li><li><a href="/tournament">tournament</a></li></ul>'
+	);
+});
 
 router.use(pageNotFoundMiddleware);
 router.use(raven.middleware.express.errorHandler(sentryClient));
