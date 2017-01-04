@@ -1,7 +1,7 @@
 import eDebug from 'enchanted-debug';
 
 import db from '../models';
-import CRUD from './crud';
+import CRUD from './CRUD';
 
 const {error} = eDebug('players-api');
 
@@ -11,11 +11,12 @@ class SignupController extends CRUD {
 	}
 
 	retrieveSignupsFromTournament(req, res, next) {
-		const tournamentid = req.params.tournamentid;
-		db.sequelize.query(createSql(), {model: Signup})
-			 .catch(err => {
+		const tournamentid = req.params.id;
+		db.sequelize.query(createSql(tournamentid), {model: db.Signup})
+			.then(dbRes => res.end(JSON.stringify(dbRes)))
+			.catch(err => {
 				error(err);
-				 next();
+				 res.status(500).end(JSON.stringify(err));
 			});
 	}
 }
@@ -23,5 +24,5 @@ class SignupController extends CRUD {
 export default SignupController;
 
 function createSql(tournamentId) {
-	return `SELECT * FROM signup where tournamentid = ${tournamentId}`;
+	return `SELECT * FROM signups where tournamentid = ${tournamentId}`;
 }

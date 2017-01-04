@@ -7,7 +7,9 @@
 	    "openreg": "2016-05-03T13:02:01.000Z",
 	    "place": 1271,
 			"teamlimit": 1,
-			"gender": "herrer"
+			"gender": "herrer",
+			"price": 200,
+			"info": "Some info about the tournament"
 		}
 	},
 	{

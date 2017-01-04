@@ -8,8 +8,9 @@ export default bindSignupsToRoutes(controller);
 
 function bindSignupsToRoutes(controller) {
 	const router = express.Router();
-	router.get('/', controller.notImplementedYet);
+  console.log(authenticate);
 	router.get('/:id', controller.retrieveSignupsFromTournament);
+  router.get('/list/', controller.list);
 	router.post('/', authenticate, controller.create);
 	router.delete('/:id', authenticate, controller.destroy);
 	router.put('/:id', authenticate, controller.update);

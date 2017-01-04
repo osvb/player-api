@@ -2,7 +2,7 @@ import express from 'express';
 import auth from 'basic-auth';
 import config from '../config';
 
-const authenticate = (req, res, next) => {
+export function authenticate(req, res, next) {
     const credentials = auth(req);
 
     if (!credentials || credentials.name !== config.user || credentials.pass !== config.password) {
@@ -14,7 +14,7 @@ const authenticate = (req, res, next) => {
     }
 };
 
-const bindControllerToCRUDRoutes = controller => {
+export default function  bindControllerToCRUDRoutes(controller) {
     const router = express.Router();
     router.get('/', controller.list);
     router.get('/search', controller.search);
@@ -24,5 +24,3 @@ const bindControllerToCRUDRoutes = controller => {
     router.put('/:id', authenticate, controller.update);
     return router;
 };
-
-export default bindControllerToCRUDRoutes;

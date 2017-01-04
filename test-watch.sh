@@ -7,4 +7,5 @@
 # createdb test
 ## (create a user in the postgres database with user test it ask you about what password to use. type in test.
 export PG_URL="postgres://test:test@localhost:5432/test"
+export DEBUG="*,-babel,-ava"
 npm run test:watch
