@@ -25,7 +25,3 @@ export default SignupController;
 function createSql(tournamentId) {
 	return `SELECT * FROM signup where tournamentid = ${tournamentId}`;
 }
-
-// function logAndDo(do) {
-// 		log()
-// }

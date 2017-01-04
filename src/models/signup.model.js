@@ -12,7 +12,7 @@
 	* @param  {Object} DataTypes description
 	*/
 	export default function (sequelize, DataTypes) {
-	    const Signup = sequelize.define('signup', {
+    const Signup = sequelize.define('signup', {
 		tournamentid: {
 			type: DataTypes.INTEGER,
 			unique: false,
@@ -37,7 +37,7 @@
 			type: DataTypes.DATE,
 			unique: false,
 			allowNull: false,
-			defaultValue: 'now()'
+			defaultValue: DataTypes.NOW
 		}
 	    });
 	    return Signup;
