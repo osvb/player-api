@@ -24,5 +24,5 @@ class SignupController extends CRUD {
 export default SignupController;
 
 function createSql(tournamentId) {
-	return `SELECT * FROM signups where tournamentid = ${tournamentId}`;
+	return `SELECT * FROM signup where 'tournamentid' = ${tournamentId}`;
 }

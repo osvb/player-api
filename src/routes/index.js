@@ -9,10 +9,22 @@ const router = express.Router();
 
 router.use('/players', player);
 router.use('/tournaments', tournament);
-router.use('/signup', signup);
+router.use('/signups', signup);
 router.use('/', (req, res) => {
 	res.send(
-		'<ul><li><a href="/players">players</a></li><li><a href="/tournament">tournament</a></li></ul>'
+		```
+		<ul>
+			<li>
+				<a href="/players">players</a><
+			/li>
+			<li>
+				<a href="/tournament">tournament</a>
+			</li>
+			<li>
+				<a href="/signups">signups</a>
+			</li>
+		</ul>
+		```
 	);
 });
 
