@@ -20,7 +20,7 @@ describe.serial('Tournament API', it => {
             })
     );
 
-    it('should reitrieve a list of all tournaments', async t => {
+    it('should retrieve a list of all tournaments', async t => {
         const response = await request(app)
             .get(URI)
             .expect(200)
@@ -28,7 +28,7 @@ describe.serial('Tournament API', it => {
         t.is(response.length, dbObjects.length);
     });
 
-    it('should reitrieve a list of one tournaments', async t => {
+    it('should retrieve a list of one tournaments', async t => {
         const response = await request(app)
             .get(`${URI}/search?name=Test1 Tournament`)
             .expect(200)

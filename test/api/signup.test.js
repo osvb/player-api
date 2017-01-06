@@ -24,17 +24,23 @@ test.beforeEach(async t => {
 });
 
 
-test('should return the signups of a given  tournament', async t => {
+test.only('should return the signups of a given  tournament', async t => {
     const fixture = tournamentObjects[0];
-    const response = await request(app)
+    const body = await request(app)
         .get(`${URI}/tournaments/${fixture.id}`)
         .expect(200)
         .then(response => response.body)
-    t.is(response.body.name, 'ResourceNotFoundError');
-    t.is(response.body.message, 'Could not find resource of type signup');
+    //all teams
+    t.is(body.teams.length, 4);
+
+    //player names
+    t.is(body.teams[0].players[0], 'FirstName 1 Lastname 1');
+    t.is(body.teams[0].players[1], 'FirstName 2 Lastname 2');
+    //sum
+    t.is(body.teams[0].sum,  432);
 });
 
-test('should reitrieve a list of all signups', async t => {
+test('should retrieve a list of all signups', async t => {
     const response = await request(app)
       .get(URI)
       .expect(200)

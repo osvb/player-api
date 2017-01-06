@@ -8,7 +8,8 @@
 	    "email": "firstname.lastname@1.com",
 			"gender": "female",
 	    "phoneNumber": "12345671",
-			"externalId": 1
+			"externalId": 1,
+      "rankingPoints_2017": 200
 		}
 	},
     {
@@ -20,7 +21,8 @@
 			    "email": "firstname.lastname@2.com",
 					"gender": "male",
 			    "phoneNumber": "12345672",
-					"externalId": 2
+					"externalId": 2,
+          "rankingPoints_2017": 232
         }
     },
     {
@@ -32,7 +34,8 @@
 					"email": "firstname.lastname@3.com",
 					"gender": "female",
 					"phoneNumber": "12345673",
-					"externalId": 3
+					"externalId": 3,
+          "rankingPoints_2017": 131
         }
     },
 		{
@@ -43,7 +46,8 @@
 					"name": "FirstName 4 Lastname 4",
 					"email": "firstname.lastname@4.com",
 					"gender": "male",
-					"phoneNumber": "12345674"
+					"phoneNumber": "12345674",
+          "rankingPoints_2017": 241
         }
     },
 		{
@@ -54,7 +58,8 @@
 					"name": "FirstName 5 Lastname 5",
 					"email": "firstname.lastname@5.com",
 					"gender": "male",
-					"phoneNumber": "12345675"
+					"phoneNumber": "12345675",
+          "rankingPoints_2017": 13
         }
     }
 ]

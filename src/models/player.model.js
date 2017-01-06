@@ -43,67 +43,67 @@ export default function (sequelize, DataTypes) {
             allowNull: true
         },
         rankingPoints_2017: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             unique: false,
             defaultValue: 0,
             allowNull: false
         },
         rankingPoints_2016: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             unique: false,
             defaultValue: 0,
             allowNull: false
         },
         rankingPoints_2015: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             unique: false,
             defaultValue: 0,
             allowNull: false
         },
         rankingPoints_2014: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             unique: false,
             defaultValue: 0,
             allowNull: false
         },
         rankingPoints_2013: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             unique: false,
             defaultValue: 0,
             allowNull: false
         },
         rankingPoints_2012: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             unique: false,
             defaultValue: 0,
             allowNull: false
         },
         rankingPoints_2011: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             unique: false,
             defaultValue: 0,
             allowNull: false
         },
         rankingPoints_2010: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             unique: false,
             defaultValue: 0,
             allowNull: false
         },
         rankingPoints_2009: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             unique: false,
             defaultValue: 0,
             allowNull: false
         },
         rankingPoints_2008: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             unique: false,
             defaultValue: 0,
             allowNull: false
         },
         rankingPoints_2007: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             unique: false,
             defaultValue: 0,
             allowNull: false
