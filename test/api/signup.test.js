@@ -24,7 +24,7 @@ test.beforeEach(async t => {
 });
 
 
-test.only('should return the signups of a given  tournament', async t => {
+test('should return the signups of a given  tournament', async t => {
     const fixture = tournamentObjects[0];
     const body = await request(app)
         .get(`${URI}/tournaments/${fixture.id}`)
@@ -34,10 +34,15 @@ test.only('should return the signups of a given  tournament', async t => {
     t.is(body.teams.length, 4);
 
     //player names
-    t.is(body.teams[0].players[0], 'FirstName 1 Lastname 1');
-    t.is(body.teams[0].players[1], 'FirstName 2 Lastname 2');
+    t.is(body.teams[1].players[0], 'FirstName 1 Lastname 1');
+    t.is(body.teams[1].players[1], 'FirstName 2 Lastname 2');
     //sum
-    t.is(body.teams[0].sum,  432);
+    t.is(body.teams[0].sum, 1272)
+
+    //sort order
+    t.is(body.teams[1].sum,  432);
+    t.is(body.teams[2].sum, 236)
+    t.is(body.teams[3].sum, 146)
 });
 
 test('should retrieve a list of all signups', async t => {

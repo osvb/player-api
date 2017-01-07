@@ -209,7 +209,6 @@ function createOr(describeData, query, key) {
 
 
 function createFieldStatement(describeData, query, key) {
-  console.log('key', key);
   if(describeData[key].type == "INTEGER") {
     return { [key]: query[key] }
   } else {

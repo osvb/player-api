@@ -15,9 +15,10 @@ class SignupController extends CRUD {
 		db.sequelize.query(findSignupsFromTournament(tournamentid), {model: db.Signup})
 			.then(signups => getAllPlayers(db, signups))
 			.then(dbRes => transform(dbRes))
+			.then(dbRes => sortByPoints(dbRes))
       .then(dbRes => res.json(dbRes))
 			.catch(err => {
-        console.log('ERROR ',err);
+        error(err);
 				res.status(500).end(JSON.stringify(err));
 			});
 	}
@@ -38,7 +39,6 @@ function getAllPlayers(db, signups) {
 export default SignupController;
 
 function transform(db) {
-  console.log('signups',typeof db.signups)
   return {
     teams: db.signups.map(signup => ({
       players: [
@@ -48,6 +48,12 @@ function transform(db) {
       sum: getSumofCurrentYear(signup, db.players)
     }))
   }
+}
+
+
+function sortByPoints(res) {
+	const teams = res.teams.sort((a, b) => b.sum - a.sum)
+	return Object.assign({}, { teams }, res);
 }
 
 function getSumofCurrentYear(signup, players) {

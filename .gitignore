@@ -5,3 +5,4 @@ dev.sh.sh
 dev.sh
 node_modules/
 local.sh
+.nyc_output/

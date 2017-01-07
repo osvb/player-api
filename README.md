@@ -6,8 +6,6 @@
 
 ## Usage (Clients)
 
-
-
 ### Endpoints
 * [Players!](./players.md)
 * [Tournaments!](./tournments.md)
