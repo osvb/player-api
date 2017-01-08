@@ -53,13 +53,19 @@ class CRUD {
     search(req, res, next) {
 
       const createSql = (describeData) => {
-        log('describeData ' + describeData);
+        log('describeData type: ' + typeof describeData);
+        log(describeData);
+        log(describeData)
+        if(Array.isArray(describeData)) {
+          log('describeData is object of lenth' + describeData.lenth)
+          describeData = describeData[0]
+        }
         const { query } = url.parse(req.url, true);
         const validFields = Object.keys(describeData) ;
-        log('allFields ' + allFields);
+        log('validFields ' + validFields);
         const queryKeys = Object.keys(query)
         const allFields = lodash.flatMap(queryKeys, key => key.split('|'))
-        log('validFields ' + validFields);
+        log('allFields ' + allFields);
         const unknownFields = allFields.filter(name => !validFields.includes(name))
         if(unknownFields.length > 0) {
           return res.status(400).json({error:`Unkown field(s): ${unknownFields}`, validFields: validFields});
